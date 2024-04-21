@@ -1,3 +1,5 @@
+import { openDB } from 'idb';
+
 const container = document.querySelector(".container");
 const coffees = [
   {
@@ -52,7 +54,28 @@ const showCoffees = () => {
   container.innerHTML = output;
 };
 
-document.addEventListener("DOMContentLoaded", showCoffees);
+document.addEventListener("DOMContentLoaded", async () => {
+
+  // Set up the database
+  const db = await openDB('settings-store', 1, {
+    upgrade(db) {
+      db.createObjectStore('settings');
+    },
+  });
+
+  showCoffees
+
+  const buttons = document.querySelectorAll('button');
+
+  buttons.forEach(button => {
+    button.addEventListener('click', async () => {
+      const key = button.getAttribute('data-key');
+      const value = button.getAttribute('data-value');
+      await db.put('settings', value, key);
+      console.log('value added to db', key, value);
+    });
+  });
+}); 
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", function() {
