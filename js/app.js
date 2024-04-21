@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   showCoffees
 
-  const buttons = document.querySelectorAll('button');
+  const buttons = document.querySelectorAll('a');
 
   buttons.forEach(button => {
     button.addEventListener('click', async () => {
