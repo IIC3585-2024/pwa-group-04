@@ -1,9 +1,4 @@
-import { openDB } from 'idb';
-
 const container = document.querySelector(".container")
-const buttons = document.querySelectorAll(".card--link")
-const title = document.querySelectorAll(".card--title")
-
 const coffees = [
   { name: "Perspiciatis", image: "images/coffee1.jpg" },
   { name: "Voluptatem", image: "images/coffee2.jpg" },
@@ -31,27 +26,7 @@ const showCoffees = () => {
     container.innerHTML = output
 }
   
-document.addEventListener("DOMContentLoaded", async () => {
-  // Set up the database
-  const db = await openDB('settings-store', 1, {
-    upgrade(db) {
-      db.createObjectStore('settings');
-    },
-  });
-
-  // If a button is clicked, save the value in IndexedDB
-  buttons.addEventListener('click', async () => {
-    console.log('Button clicked');
-    await db.put('settings', 'button', 'content');
-  });
-
-  // If a title is clicked, see the 'content' value in the console
-  title.addEventListener('click', async () => {
-    console.log(await db.get('settings', 'button'));
-  });
-
-  showCoffees
-})
+document.addEventListener("DOMContentLoaded", showCoffees)
   
 if ("serviceWorker" in navigator) {
     window.addEventListener("load", function() {
