@@ -4,7 +4,10 @@ Used the following tutorial and base code
 
 
 # PWA
-This repository includes a PWA where you can see different XXX and add yours.
-It uses express
+This repository includes a PWA where you can see different coffees. The idea is that in the future you can upload your own.
+It uses Cache API and IndexedDB API
 
 ## Usage
+The app is uploaded in the following [page](https://iic3585-2024.github.io/pwa-group-04/#). Right now you can't test it locally.
+
+The initial elements are loaded in a cache and there is a IndexedDB API where the coffees you clicked are saved.
