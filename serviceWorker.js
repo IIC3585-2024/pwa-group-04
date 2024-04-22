@@ -1,4 +1,4 @@
-export const assets = [
+const assets = [
   ``,
   `index.html`,
   `css/style.css`,
