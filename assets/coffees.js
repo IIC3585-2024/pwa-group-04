@@ -1,56 +1,54 @@
-const basePath = '/';
-
 export const coffees = [
     {
       name: "Perspiciatis",
-      image: `${basePath}assets/images/coffee1.jpg`
+      image: `assets/images/coffee1.jpg`
     },
     {
       name: "Voluptatem",
-      image: `${basePath}assets/images/coffee2.jpg`
+      image: `assets/images/coffee2.jpg`
     },
     {
       name: "Explicabo",
-      image: `${basePath}assets/images/coffee3.jpg`
+      image: `assets/images/coffee3.jpg`
     },
     {
       name: "Rchitecto",
-      image: `${basePath}assets/images/coffee4.jpg`
+      image: `assets/images/coffee4.jpg`
     },
     {
       name: "Beatae",
-      image: `${basePath}assets/images/coffee5.jpg`
+      image: `assets/images/coffee5.jpg`
     },
     {
       name: "Vitae",
-      image: `${basePath}assets/images/coffee6.jpg`
+      image: `assets/images/coffee6.jpg`
     },
     {
       name: "Inventore",
-      image: `${basePath}assets/images/coffee7.jpg`
+      image: `assets/images/coffee7.jpg`
     },
     {
       name: "Veritatis",
-      image: `${basePath}assets/images/coffee8.jpg`
+      image: `assets/images/coffee8.jpg`
     },
     {
       name: "Accusantium",
-      image: `${basePath}assets/images/coffee9.jpg`
+      image: `assets/images/coffee9.jpg`
     }
 ];
 
 export const assets = [
-    basePath,
-    `${basePath}index.html`,
-    `${basePath}css/style.css`,
-    `${basePath}js/app.js`,
-    `${basePath}assets/images/coffee1.jpg`,
-    `${basePath}assets/images/coffee2.jpg`,
-    `${basePath}assets/images/coffee3.jpg`,
-    `${basePath}assets/images/coffee4.jpg`,
-    `${basePath}assets/images/coffee5.jpg`,
-    `${basePath}assets/images/coffee6.jpg`,
-    `${basePath}assets/images/coffee7.jpg`,
-    `${basePath}assets/images/coffee8.jpg`,
-    `${basePath}assets/images/coffee9.jpg`
+    ``,
+    `index.html`,
+    `css/style.css`,
+    `js/app.js`,
+    `assets/images/coffee1.jpg`,
+    `assets/images/coffee2.jpg`,
+    `assets/images/coffee3.jpg`,
+    `assets/images/coffee4.jpg`,
+    `assets/images/coffee5.jpg`,
+    `assets/images/coffee6.jpg`,
+    `assets/images/coffee7.jpg`,
+    `assets/images/coffee8.jpg`,
+    `assets/images/coffee9.jpg`
 ];
