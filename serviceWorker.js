@@ -1,4 +1,18 @@
-import { assets } from "./assets";
+export const assets = [
+  ``,
+  `index.html`,
+  `css/style.css`,
+  `js/app.js`,
+  `assets/images/coffee1.jpg`,
+  `assets/images/coffee2.jpg`,
+  `assets/images/coffee3.jpg`,
+  `assets/images/coffee4.jpg`,
+  `assets/images/coffee5.jpg`,
+  `assets/images/coffee6.jpg`,
+  `assets/images/coffee7.jpg`,
+  `assets/images/coffee8.jpg`,
+  `assets/images/coffee9.jpg`
+];
 
 const staticDevCoffee = "dev-coffee-site-v1";
 
