@@ -53,6 +53,13 @@ const showCoffees = () => {
 };
 
 document.addEventListener("DOMContentLoaded", async () => {
+
+    // This is what our customer data looks like.
+  const customerData = [
+    { ssn: "444-44-4444", name: "Bill", age: 35, email: "bill@company.com" },
+    { ssn: "555-55-5555", name: "Donna", age: 32, email: "donna@home.org" },
+  ];
+
   const db = "store";
 
   const request = indexedDB.open(db, 3);
@@ -88,7 +95,18 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
     };
   };
-  
+
+  const transaction = db.transaction(["customers"]);
+  const objectStore = transaction.objectStore("customers");
+  const request_2 = objectStore.get("444-44-4444");
+  request_2.onerror = (event) => {
+    // Handle errors!
+  };
+  request_2.onsuccess = (event) => {
+    // Do something with the request.result!
+    console.log(`Name for SSN 444-44-4444 is ${request_2.result.name}`);
+  };
+
   showCoffees
 
   const buttons = document.querySelectorAll('a');
