@@ -22,7 +22,7 @@ erDiagram
 recipe || --o{ ingredient : has
 recipe || --o{ step : has
 recipe {
-  int id
+  int id PK
   string name
   string description
   string image
@@ -30,12 +30,11 @@ recipe {
   string steps
 }
 ingredient {
-  int id
-  string name
+  string name PK
   string quantity
 }
 step {
-  int id
+  int id PK
   string description
 }
 ```
@@ -51,12 +50,10 @@ Example:
       "description": "",
       "ingredients": [
         {
-          "id": 1,
           "name": "Café",
           "quantity": "1"
         },
         {
-          "id": 2,
           "name": "Water",
           "quantity": "1"
         }
@@ -78,12 +75,10 @@ Example:
       "description": "",
       "ingredients": [
         {
-          "id": 1,
           "name": "Café",
           "quantity": "1"
         },
         {
-          "id": 2,
           "name": "Water",
           "quantity": "1"
         },

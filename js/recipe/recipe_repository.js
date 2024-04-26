@@ -67,7 +67,7 @@ class RecipeRepository {
     /**
      *
      * @param {number} id
-     * @returns {Promise<Recipe>} - The promise object representing the result of the operation.
+     * @returns {Promise<Recipe>}
      */
     async readRecipe(id) {
         const transaction = this.db.transaction(['recipes'], 'readonly');
@@ -89,7 +89,7 @@ class RecipeRepository {
     /**
      *
      * @param {Recipe} recipe
-     * @returns {Promise<Recipe>} - The promise object representing the result of the operation.
+     * @returns {Promise<Recipe>}
      */
     async updateRecipe(recipe) {
         const transaction = this.db.transaction(['recipes'], 'readwrite');
@@ -119,7 +119,7 @@ class RecipeRepository {
 
     /**
      *
-     * @returns {Promise<Recipe>} - The promise object representing the result of the operation.
+     * @returns {Promise<Recipe>}
      */
     async listRecipes() {
         const transaction = this.db.transaction(['recipes'], 'readonly');
@@ -134,12 +134,36 @@ class RecipeRepository {
 
     /**
      * Deletes all recipes from the repository.
-     * @returns {Promise} - The promise object representing the result of the operation.
+     * @returns {Promise}
      */
     async deleteAllRecipes() {
         const transaction = this.db.transaction(['recipes'], 'readwrite');
         const objectStore = transaction.objectStore('recipes');
         objectStore.clear();
+    }
+
+    /**
+     *
+     * @param {number} recipeId
+     * @param {Ingredient} ingredient
+     * @returns {Promise<Recipe>}
+     */
+    async addIngredient(recipeId, ingredient) {
+        const recipe = await this.readRecipe(recipeId);
+        recipe.ingredients.push(ingredient);
+        await this.updateRecipe(recipe);
+        return recipe;
+    }
+
+    /**
+     * @returns {Promise}
+     */
+    async removeIngredient(recipeId, ingredientName) {
+        const recipe = await this.readRecipe(recipeId);
+        const ingredientIndex = recipe.ingredients.findIndex(ingredient => ingredient.name === ingredientName);
+        recipe.ingredients.splice(ingredientIndex, 1);
+        await this.updateRecipe(recipe);
+        return recipe;
     }
 
 }

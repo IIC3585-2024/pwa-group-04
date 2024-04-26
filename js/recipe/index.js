@@ -1,12 +1,13 @@
 import { RecipeRepository } from "./recipe_repository.js";
 import { RecipeFactory } from "./recipe_factory.js";
+import { IngredientFactory } from "../ingredient/ingredient_factory.js";
 
 const recipeRepository = new RecipeRepository();
 
 // Html elements
-const recipeName = document.getElementById("recipe_name");
-const recipeDescription = document.getElementById("recipe_description");
-const recipeId = document.getElementById("recipe_id");
+const recipeNameInput = document.getElementById("recipe_name");
+const recipeDescriptionInput = document.getElementById("recipe_description");
+const recipeIdInput = document.getElementById("recipe_id");
 
 const output = document.getElementById("output");
 
@@ -16,8 +17,8 @@ const output = document.getElementById("output");
 const createRecipeButton = document.getElementById("create-recipe");
 
 createRecipeButton.addEventListener("click", async () => {
-  const recipe_name = recipeName.value;
-  const recipe_description = recipeDescription.value;
+  const recipe_name = recipeNameInput.value;
+  const recipe_description = recipeDescriptionInput.value;
   let recipe = RecipeFactory.createRecipe(recipe_name, recipe_description);
   recipe = await recipeRepository.createRecipe(recipe);
   output.textContent = JSON.stringify(recipe, null, 2);
@@ -27,10 +28,10 @@ createRecipeButton.addEventListener("click", async () => {
 const updateRecipeButton = document.getElementById("update-recipe");
 
 updateRecipeButton.addEventListener("click", async () => {
-  const id = parseInt(recipeId.value);
+  const id = parseInt(recipeIdInput.value);
   const recipe = await recipeRepository.readRecipe(id);
-  recipe.name = recipeName.value;
-  recipe.description = recipeDescription.value;
+  recipe.name = recipeNameInput.value;
+  recipe.description = recipeDescriptionInput.value;
   await recipeRepository.updateRecipe(recipe);
   output.textContent = JSON.stringify(recipe, null, 2);
 });
@@ -39,7 +40,7 @@ updateRecipeButton.addEventListener("click", async () => {
 const readRecipeButton = document.querySelector("#read-recipe");
 
 readRecipeButton.addEventListener("click", async () => {
-  const id = parseInt(recipeId.value);
+  const id = parseInt(recipeIdInput.value);
   try {
     const recipe = await recipeRepository.readRecipe(id);
     output.textContent = JSON.stringify(recipe, null, 2);
@@ -60,7 +61,7 @@ listRecipeButton.addEventListener("click", async () => {
 const deleteRecipeButton = document.querySelector("#delete-recipe");
 
 deleteRecipeButton.addEventListener("click", async () => {
-  const id = parseInt(recipeId.value);
+  const id = parseInt(recipeIdInput.value);
   try {
     await recipeRepository.deleteRecipe(id);
     output.textContent = `Recipe with id ${id} deleted.`;
@@ -73,4 +74,31 @@ const deleteAllRecipeButton = document.querySelector("#delete-all-recipe");
 deleteAllRecipeButton.addEventListener("click", async () => {
   await recipeRepository.deleteAllRecipes();
   console.log("Recipes deleted.");
+});
+
+// Ingredients
+
+const ingredientNameInput = document.querySelector("#ingredient_name");
+const ingredientQuantityInput = document.querySelector("#ingredient_quantity");
+
+// Add ingredient
+const addIngredientButton = document.querySelector("#add-ingredient");
+
+addIngredientButton.addEventListener("click", async () => {
+  const recipeId = parseInt(recipeIdInput.value);
+  const name = ingredientNameInput.value;
+  const quantity = parseInt(ingredientQuantityInput.value);
+  let ingredient = IngredientFactory.create(name, quantity);
+  const recipe = await recipeRepository.addIngredient(recipeId, ingredient);
+  output.textContent = JSON.stringify(recipe, null, 2);
+});
+
+// Remove ingredient
+const removeIngredientButton = document.querySelector("#remove-ingredient");
+
+removeIngredientButton.addEventListener("click", async () => {
+  const recipeId = parseInt(recipeIdInput.value);
+  const name = ingredientNameInput.value;
+  const recipe = await recipeRepository.removeIngredient(recipeId, name);
+  output.textContent = JSON.stringify(recipe, null, 2);
 });
