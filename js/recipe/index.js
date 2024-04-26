@@ -1,6 +1,7 @@
 import { RecipeRepository } from "./recipe_repository.js";
 import { RecipeFactory } from "./recipe_factory.js";
 import { IngredientFactory } from "../ingredient/ingredient_factory.js";
+import { StepFactory } from "../steps/steps_factory.js";
 
 const recipeRepository = new RecipeRepository();
 
@@ -102,3 +103,32 @@ removeIngredientButton.addEventListener("click", async () => {
   const recipe = await recipeRepository.removeIngredient(recipeId, name);
   output.textContent = JSON.stringify(recipe, null, 2);
 });
+
+// Steps
+
+const stepIdInput = document.querySelector("#step_id");
+const stepDescriptionInput = document.querySelector("#step_description");
+
+// Add step
+const addStepButton = document.querySelector("#add-step");
+
+addStepButton.addEventListener("click", async () => {
+  const recipeId = parseInt(recipeIdInput.value);
+  const stepId = parseInt(stepIdInput.value)
+  const description = stepDescriptionInput.value;
+  let step = StepFactory.create(stepId, description);
+  const recipe = await recipeRepository.addStep(recipeId, step);
+  output.textContent = JSON.stringify(recipe, null, 2);
+});
+
+// Remove step
+const removeStepButton = document.querySelector("#remove-step");
+
+removeStepButton.addEventListener("click", async () => {
+  const recipeId = parseInt(recipeIdInput.value);
+
+  const stepId = stepIdInput.value;
+  const recipe = await recipeRepository.removeStep(recipeId, stepId);
+  output.textContent = JSON.stringify(recipe, null, 2);
+});
+

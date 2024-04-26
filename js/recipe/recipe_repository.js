@@ -156,12 +156,34 @@ class RecipeRepository {
     }
 
     /**
-     * @returns {Promise}
+     * @returns {Promise<Recipe>}
      */
     async removeIngredient(recipeId, ingredientName) {
         const recipe = await this.readRecipe(recipeId);
         const ingredientIndex = recipe.ingredients.findIndex(ingredient => ingredient.name === ingredientName);
         recipe.ingredients.splice(ingredientIndex, 1);
+        await this.updateRecipe(recipe);
+        return recipe;
+    }
+
+    /**
+     * @returns {Promise<Recipe>}
+     */
+    async addStep(recipeId, step) {
+        const recipe = await this.readRecipe(recipeId);
+        recipe.steps.push(step);
+        await this.updateRecipe(recipe);
+        return recipe;
+    }
+
+    /**
+     * @returns {Promise<Recipe>}
+     */
+
+    async removeStep(recipeId, stepId) {
+        const recipe = await this.readRecipe(recipeId);
+        const stepIndex = recipe.steps.findIndex(step => step.id === stepId);
+        recipe.steps.splice(stepIndex, 1);
         await this.updateRecipe(recipe);
         return recipe;
     }
