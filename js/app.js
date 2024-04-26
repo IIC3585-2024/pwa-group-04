@@ -1,4 +1,4 @@
-import { db, addCoffeeToDB } from './db.js';
+import { addCoffeeToDB } from './db.js';
 import { coffees } from '../assets/coffees.js';
 
 const basePath = '/pwa-group-04';
@@ -21,7 +21,7 @@ const showCoffees = () => {
 };
 
 document.addEventListener("DOMContentLoaded", async () => {
-  
+
   showCoffees();
 
   const buttons = document.querySelectorAll('a');
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       await addCoffeeToDB(key, value);
     });
   });
-}); 
+});
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", function() {

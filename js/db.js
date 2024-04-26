@@ -1,3 +1,4 @@
+
 let db;
 
 const openOrCreateDB = window.indexedDB.open('coffee_db', 1);
@@ -34,7 +35,7 @@ const addCoffeeToDB = async (key, value) => {
       transaction.addEventListener('complete', () => {
         console.log("Loaded")
       });
-      
+
       transaction.addEventListener('error', () => console.log('Transaction error'));
 };
 
