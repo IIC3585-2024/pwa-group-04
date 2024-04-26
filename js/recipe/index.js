@@ -20,7 +20,7 @@ const createRecipeButton = document.getElementById("create-recipe");
 createRecipeButton.addEventListener("click", async () => {
   const recipe_name = recipeNameInput.value;
   const recipe_description = recipeDescriptionInput.value;
-  let recipe = RecipeFactory.createRecipe(recipe_name, recipe_description);
+  let recipe = RecipeFactory.create(recipe_name, recipe_description);
   recipe = await recipeRepository.createRecipe(recipe);
   output.textContent = JSON.stringify(recipe, null, 2);
 });
@@ -30,10 +30,10 @@ const updateRecipeButton = document.getElementById("update-recipe");
 
 updateRecipeButton.addEventListener("click", async () => {
   const id = parseInt(recipeIdInput.value);
-  const recipe = await recipeRepository.readRecipe(id);
+  const recipe = await recipeRepository.read(id);
   recipe.name = recipeNameInput.value;
   recipe.description = recipeDescriptionInput.value;
-  await recipeRepository.updateRecipe(recipe);
+  await recipeRepository.update(recipe);
   output.textContent = JSON.stringify(recipe, null, 2);
 });
 
@@ -43,7 +43,7 @@ const readRecipeButton = document.querySelector("#read-recipe");
 readRecipeButton.addEventListener("click", async () => {
   const id = parseInt(recipeIdInput.value);
   try {
-    const recipe = await recipeRepository.readRecipe(id);
+    const recipe = await recipeRepository.read(id);
     output.textContent = JSON.stringify(recipe, null, 2);
   } catch {
     output.textContent = `Recipe with id ${id} not found.`;
@@ -54,7 +54,7 @@ readRecipeButton.addEventListener("click", async () => {
 const listRecipeButton = document.querySelector("#list-recipe");
 
 listRecipeButton.addEventListener("click", async () => {
-  const recipes = await recipeRepository.listRecipes();
+  const recipes = await recipeRepository.list();
   output.textContent = JSON.stringify(recipes, null, 2);
 });
 
@@ -64,7 +64,7 @@ const deleteRecipeButton = document.querySelector("#delete-recipe");
 deleteRecipeButton.addEventListener("click", async () => {
   const id = parseInt(recipeIdInput.value);
   try {
-    await recipeRepository.deleteRecipe(id);
+    await recipeRepository.delete(id);
     output.textContent = `Recipe with id ${id} deleted.`;
   } catch {
     output.textContent = `Recipe with id ${id} could not be deleted.`;
@@ -73,7 +73,7 @@ deleteRecipeButton.addEventListener("click", async () => {
 const deleteAllRecipeButton = document.querySelector("#delete-all-recipe");
 
 deleteAllRecipeButton.addEventListener("click", async () => {
-  await recipeRepository.deleteAllRecipes();
+  await recipeRepository.deleteAll();
   console.log("Recipes deleted.");
 });
 

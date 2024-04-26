@@ -16,7 +16,7 @@ class RecipeFactory {
      * @param {string} description - The description of the recipe.
      * @returns {Recipe} The created recipe object.
      */
-    static createRecipe(name, description) {
+    static create(name, description) {
         return {
             name,
             description,
@@ -29,10 +29,10 @@ class RecipeFactory {
      * Creates a random recipe with a generated name and description.
      * @returns {Recipe} The created random recipe object.
      */
-    static createRandomRecipe() {
+    static createRandom() {
         const name = faker.lorem.sentence();
         const description = faker.lorem.paragraph();
-        const recipe = this.createRecipe(name, description);
+        const recipe = this.create(name, description);
         return recipe;
     }
 }

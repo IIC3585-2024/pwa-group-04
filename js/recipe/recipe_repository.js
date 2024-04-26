@@ -69,7 +69,7 @@ class RecipeRepository {
      * @param {number} id
      * @returns {Promise<Recipe>}
      */
-    async readRecipe(id) {
+    async read(id) {
         const transaction = this.db.transaction(['recipes'], 'readonly');
         const objectStore = transaction.objectStore('recipes');
         const query = objectStore.get(id);
@@ -91,7 +91,7 @@ class RecipeRepository {
      * @param {Recipe} recipe
      * @returns {Promise<Recipe>}
      */
-    async updateRecipe(recipe) {
+    async update(recipe) {
         const transaction = this.db.transaction(['recipes'], 'readwrite');
         const objectStore = transaction.objectStore('recipes');
         const query = objectStore.put(recipe);
@@ -102,7 +102,7 @@ class RecipeRepository {
         });
     }
 
-    async deleteRecipe(id) {
+    async delete(id) {
         const transaction = this.db.transaction(['recipes'], 'readwrite');
         const objectStore = transaction.objectStore('recipes');
         const query = objectStore.delete(id);
@@ -121,7 +121,7 @@ class RecipeRepository {
      *
      * @returns {Promise<Recipe>}
      */
-    async listRecipes() {
+    async list() {
         const transaction = this.db.transaction(['recipes'], 'readonly');
         const objectStore = transaction.objectStore('recipes');
         const query = objectStore.getAll();
@@ -136,7 +136,7 @@ class RecipeRepository {
      * Deletes all recipes from the repository.
      * @returns {Promise}
      */
-    async deleteAllRecipes() {
+    async deleteAll() {
         const transaction = this.db.transaction(['recipes'], 'readwrite');
         const objectStore = transaction.objectStore('recipes');
         objectStore.clear();
@@ -149,9 +149,9 @@ class RecipeRepository {
      * @returns {Promise<Recipe>}
      */
     async addIngredient(recipeId, ingredient) {
-        const recipe = await this.readRecipe(recipeId);
+        const recipe = await this.read(recipeId);
         recipe.ingredients.push(ingredient);
-        await this.updateRecipe(recipe);
+        await this.update(recipe);
         return recipe;
     }
 
@@ -159,10 +159,10 @@ class RecipeRepository {
      * @returns {Promise<Recipe>}
      */
     async removeIngredient(recipeId, ingredientName) {
-        const recipe = await this.readRecipe(recipeId);
+        const recipe = await this.read(recipeId);
         const ingredientIndex = recipe.ingredients.findIndex(ingredient => ingredient.name === ingredientName);
         recipe.ingredients.splice(ingredientIndex, 1);
-        await this.updateRecipe(recipe);
+        await this.update(recipe);
         return recipe;
     }
 
@@ -170,9 +170,9 @@ class RecipeRepository {
      * @returns {Promise<Recipe>}
      */
     async addStep(recipeId, step) {
-        const recipe = await this.readRecipe(recipeId);
+        const recipe = await this.read(recipeId);
         recipe.steps.push(step);
-        await this.updateRecipe(recipe);
+        await this.update(recipe);
         return recipe;
     }
 
@@ -181,10 +181,10 @@ class RecipeRepository {
      */
 
     async removeStep(recipeId, stepId) {
-        const recipe = await this.readRecipe(recipeId);
+        const recipe = await this.read(recipeId);
         const stepIndex = recipe.steps.findIndex(step => step.id === stepId);
         recipe.steps.splice(stepIndex, 1);
-        await this.updateRecipe(recipe);
+        await this.update(recipe);
         return recipe;
     }
 
