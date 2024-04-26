@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Recipes</h1>
+
+    <div>
+      <button id="list-recipe">List recipes</button>
+      <button id="delete-all-recipe">Delete all recipes</button>
+    </div>
+
+    <h2>Form</h2>
+    <div>
+      <div>
+        <label for="recipe_id">Recipe ID</label>
+        <input
+          type="number"
+          name="recipe_id"
+          id="recipe_id"
+          placeholder="Enter recipe ID*"
+        />
+
+      </div>
+      <div>
+        <label for="recipe_name">Name</label>
+        <input type="text" id="recipe_name" placeholder="Enter recipe name" />
+      </div>
+      <div>
+        <label for="recipe_description">Description</label>
+        <input
+          type="text"
+          name="recipe_description"
+          id="recipe_description"
+          placeholder="Enter recipe description"
+        />
+      </div>
+    </div>
+
+    <br>
+    <div>
+        <button id="create-recipe">Create Recipe</button>
+        <button id="update-recipe">Update Recipe</button>
+        <button id="read-recipe">Read Recipe</button>
+        <button id="delete-recipe">Delete Recipe</button>
+    </div>
+    <p>* The id is auto generated for creation</p>
+
+    <div>
+      <h2>Ingredients</h2>
+
+      <div>
+        <div>
+          <label for="ingredient_name">Name</label>
+          <input
+            type="text"
+            name="ingredient_name"
+            id="ingredient_name"
+            placeholder="Enter ingredient name"
+          />
+        </div>
+        <div>
+          <label for="ingredient_quantity">Quantity</label>
+          <input
+            type="number"
+            name="ingredient_quantity"
+            id="ingredient_quantity"
+            placeholder="Enter ingredient quantity"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button id="add-ingredient">Create Ingredient</button>
+        <button id="remove-ingredient">Delete Ingredient</button>
+      </div>
+
+    </div>
+
+    <div>
+      <h2>Steps</h2>
+
+      <div>
+        <div>
+          <label for="step_id">Id</label>
+          <input
+            type="number"
+            name="step_id"
+            id="step_id"
+            placeholder="Enter step id"
+          />
+        </div>
+        <div>
+          <label for="step_description">Description</label>
+          <input
+            type="text"
+            name="step_description"
+            id="step_description"
+            placeholder="Enter step description"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button id="add-step">Create Step</button>
+        <button id="remove-step">Delete Step</button>
+      </div>
+
+    </div>
+
+    <h2>Output</h2>
+    <pre id="output"></pre>
+
+    <script type="module" src="js/recipe/index.js"></script>
+  </body>
+</html>

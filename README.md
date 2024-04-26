@@ -11,3 +11,97 @@ It uses Cache API and IndexedDB API
 The app is uploaded in the following [page](https://iic3585-2024.github.io/pwa-group-04/#). Right now you can't test it locally.
 
 The initial elements are loaded in a cache and there is a IndexedDB API where the coffees you clicked are saved.
+
+## Data Modeling:
+
+```mermaid
+---
+title: Recipe App
+---
+erDiagram
+recipe || --o{ ingredient : has
+recipe || --o{ step : has
+recipe {
+  int id PK
+  string name
+  string description
+  string image
+  string ingredients
+  string steps
+}
+ingredient {
+  string name PK
+  string quantity
+}
+step {
+  int id PK
+  string description
+}
+```
+
+Example:
+
+```json
+{
+  "recipes": [
+    {
+      "id": 1,
+      "name": "Coffee",
+      "description": "",
+      "ingredients": [
+        {
+          "name": "Café",
+          "quantity": "1"
+        },
+        {
+          "name": "Water",
+          "quantity": "1"
+        }
+      ],
+      "step": [
+        {
+          "id": 1,
+          "description": "Boil Water"
+        },
+        {
+          "id": 2,
+          "description": "Add Coffee"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Coffee with milk",
+      "description": "",
+      "ingredients": [
+        {
+          "name": "Café",
+          "quantity": "1"
+        },
+        {
+          "name": "Water",
+          "quantity": "1"
+        },
+        {
+          "id": 3,
+          "name": "Milk",
+          "quantity": "1"
+        }
+      ],
+      "step": [
+        {
+          "id": 1,
+          "description": "Boil Water"
+        },
+        {
+          "id": 2,
+          "description": "Add Coffee"
+        },
+        {
+          "id": 3,
+          "description": "Add milk"
+        }
+      ]
+    }
+  ],
+}
