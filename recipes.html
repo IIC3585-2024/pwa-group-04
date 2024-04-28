@@ -9,10 +9,35 @@
   </head>
   <body>
     <div class="container">
-        <h2>My recipes</h2>
-        <button id="list-recipe">List recipes</button>
+        <div class="flex-y">
+            <h1 class="color-primary">Cooknote</h1>
+            <h3>Create a new recipe</h3>
+            <div>
+                <input type="text" id="recipe_name" placeholder="Recipe name" />
+            </div>
+            <div>
+                <input
+                    type="text"
+                    name="recipe_description"
+                    id="recipe_description"
+                    placeholder="Recipe description"
+                />
+            </div>
+            <button id="create-recipe">Create</button>
+        </div>
 
-        <div id="list-recipe-container"></div>
+        <hr/>
+        <div class="flex-y">
+            <h2>My recipes</h2>
+            <button id="list-recipe">List recipes</button>
+            <button id="delete-all-recipe">Delete all recipes</button>
+            <div id="list-recipe-container"></div>
+            <div id="recipe-container">
+                <div id="recipe-title"></div>
+                <div id="recipe-description"></div>
+            </div>
+        </div>
+
     </div>
 
     <script type="module" src="js/scripts/recipeScript.js"></script>
