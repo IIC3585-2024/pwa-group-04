@@ -76,22 +76,6 @@ button {
     cursor: pointer;
 }
 
-input {
-    border: var(--white) 1px solid;
-    border-radius: 0.5rem;
-    height: 3rem;
-    margin: 0.2rem;
-    padding: 0rem 1.5rem;
-    width: 60vw;
-    font-family: "Poppins", sans-serif;
-    transition: border 0.3s linear;
-}
-
-input:focus {
-    outline: none;
-    border: var(--primary) 1px solid;
-}
-
 
 /* Height styles */
 
@@ -158,4 +142,20 @@ input:focus {
 
 .recipe-item {
     cursor: pointer;
+}
+
+input {
+    border: var(--white) 1px solid;
+    border-radius: 0.5rem;
+    height: 3rem;
+    margin: 0.2rem;
+    padding: 0rem 1.5rem;
+    width: 60vw;
+    font-family: "Poppins", sans-serif;
+    transition: border 0.3s linear;
+}
+
+.input:focus {
+    outline: none;
+    border: var(--primary) 1px solid;
 }

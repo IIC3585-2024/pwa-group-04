@@ -13,7 +13,11 @@
             <h1 class="color-primary">Cooknote</h1>
             <h3>Create a new recipe</h3>
             <div>
-                <input type="text" id="recipe_name" placeholder="Recipe name" />
+                <input 
+                    type="text" 
+                    id="recipe_name" 
+                    placeholder="Recipe name" 
+                />
             </div>
             <div>
                 <input
@@ -33,8 +37,36 @@
             <button id="delete-all-recipe">Delete all recipes</button>
             <div id="list-recipe-container"></div>
             <div id="recipe-container">
-                <div id="recipe-title"></div>
-                <div id="recipe-description"></div>
+                <h3 id="recipe-title"></h3>
+                <p id="recipe-description"></p>
+                <input
+                    type="text"
+                    name="recipe_quantity_input"
+                    id="quantity-ingredient-input"
+                    placeholder="Quantity"
+                />
+                <input
+                    type="text"
+                    name="recipe_ingredient_input"
+                    id="recipe-ingredient-input"
+                    placeholder="Enter an ingredient name"
+                />
+                <button id="ingredient-button">Agregar ingrediente</button>
+                <div id="recipe-ingredients"></div>
+                <input
+                    type="number"
+                    name="id_step_input"
+                    id="id-step-input"
+                    placeholder="Enter a step"
+                />
+                <input
+                    type="text"
+                    name="recipe_step_input"
+                    id="recipe-step-input"
+                    placeholder="Enter a step"
+                />
+                <button id="step-button">Agregar paso</button>
+                <div id="recipe-steps"></div>
             </div>
         </div>
 

@@ -1,8 +1,13 @@
 import { recipeRepository } from "../app.js";
 import { RecipeFactory } from "../recipe/recipe_factory.js";
+import { IngredientFactory } from "../ingredient/ingredient_factory.js";
+import { StepFactory } from "../steps/steps_factory.js";
+
+// Recipes
 
 const recipeNameInput = document.getElementById("recipe_name");
 const recipeDescriptionInput = document.getElementById("recipe_description");
+let recipeId;
 
 // Lists all the recipes from recipeRepository
 const listRecipes = async () => {
@@ -50,7 +55,7 @@ async function recipeItemClickHandler(event) {
     // Check if the clicked element has the class "recipe-item"
     if ($(event.target).hasClass("recipe-item")) {
         // Retrieve the recipe ID from the data attribute
-        const recipeId = parseInt($(event.target).data("recipe-id"));
+        recipeId = parseInt($(event.target).data("recipe-id"));
         
         try {
             const recipe = await recipeRepository.read(recipeId);
@@ -69,6 +74,37 @@ async function recipeItemClickHandler(event) {
     }
 }
 
+
+// Ingredients
+
+const ingredientNameInput = document.getElementById("recipe-ingredient-input");
+const ingredientQuantityInput = document.getElementById("quantity-ingredient-input");
+
+// Function to add ingredient
+async function addIngredientHandler() {
+    const name = ingredientNameInput.value;
+    const quantity = ingredientQuantityInput.value;
+    let ingredient = IngredientFactory.create(name, quantity);
+    const recipe = await recipeRepository.addIngredient(recipeId, ingredient);
+    console.log(recipe)
+    ingredientNameInput.value = "";
+    ingredientQuantityInput.value = "";
+}
+
+// Steps
+const stepIdInput = document.getElementById("id-step-input");
+const stepDescriptionInput = document.getElementById("recipe-step-input");
+
+async function addStepHandler() {
+    const description = stepDescriptionInput.value;
+    const stepId = parseInt(stepIdInput.value);
+    let step = StepFactory.create(stepId, description);
+    const recipe = await recipeRepository.addStep(recipeId, step);
+    console.log(recipe)
+    stepIdInput.value = "";
+    stepDescriptionInput.value = "";
+}
+
 $(document).ready(function() {
 
     // List the recipes when the button is clicked
@@ -76,6 +112,12 @@ $(document).ready(function() {
 
     // Create a recipe when the button is clicked
     $("#create-recipe").click(createRecipeHandler);
+
+    // Create an add ingredient to selected recipe
+    $("#ingredient-button").click(addIngredientHandler);
+
+    // Create an add step to selected recipe
+    $("#step-button").click(addStepHandler);
 
     $("#list-recipe-container").on("click", ".recipe-item", recipeItemClickHandler);
 });
