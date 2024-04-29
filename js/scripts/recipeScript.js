@@ -50,6 +50,40 @@ async function createRecipeHandler() {
     recipeDescriptionInput.value = "";
 }
 
+function showSteps(recipe) {
+    const stepsContainer = $("#steps-container");
+
+    stepsContainer.empty();
+
+    // Iterate over the recipes and create HTML elements for each recipe
+    recipe['steps'].forEach(step => {
+        const stepItem = $("<div>", {
+            class: "step-item"
+        }).text(step.id + step.description); // Example: Display the recipe name as text
+
+        // Append the recipe item to the container
+        stepsContainer.append(stepItem);
+    });
+
+};
+
+function showIngredients(recipe) {
+    const ingredientsElement = $("#ingredients-container");
+
+    ingredientsElement.empty();
+
+    // Iterate over the recipes and create HTML elements for each recipe
+    recipe['ingredients'].forEach(ingredient => {
+        const ingredientItem = $("<div>", {
+            class: "ingredient-item"
+        }).text(ingredient.quantity + ingredient.name); // Example: Display the recipe name as text
+
+        // Append the recipe item to the container
+        ingredientsElement.append(ingredientItem);
+    });
+
+};
+
 // Function to handle click events on recipe items
 async function recipeItemClickHandler(event) {
     // Check if the clicked element has the class "recipe-item"
@@ -60,16 +94,22 @@ async function recipeItemClickHandler(event) {
         try {
             const recipe = await recipeRepository.read(recipeId);
             console.log(recipe, "recipe");
+            
             // Select the recipe title and description elements
             const recipeTitleElement = $("#recipe-title");
             const recipeDescriptionElement = $("#recipe-description");
+
+            showIngredients(recipe);
+            showSteps(recipe);
 
             // Insert the title and description into the respective elements
             recipeTitleElement.text(recipe.name);
             recipeDescriptionElement.text(recipe.description);
 
+            $("#recipe-container").show()
+
         } catch {
-            output.textContent = `Recipe with id ${recipeId} not found.`;
+            recipeTitleElement.textContent = `Recipe with id ${recipeId} not found.`;
         }
     }
 }
@@ -89,6 +129,8 @@ async function addIngredientHandler() {
     console.log(recipe)
     ingredientNameInput.value = "";
     ingredientQuantityInput.value = "";
+
+    showIngredients(recipe);
 }
 
 // Steps
@@ -103,21 +145,25 @@ async function addStepHandler() {
     console.log(recipe)
     stepIdInput.value = "";
     stepDescriptionInput.value = "";
+
+    showSteps(recipe);
 }
 
 $(document).ready(function() {
-
+    
+    
     // List the recipes when the button is clicked
     $("#list-recipe").click(listRecipesHandler);
-
+    
     // Create a recipe when the button is clicked
     $("#create-recipe").click(createRecipeHandler);
-
+    
     // Create an add ingredient to selected recipe
     $("#ingredient-button").click(addIngredientHandler);
-
+    
     // Create an add step to selected recipe
     $("#step-button").click(addStepHandler);
-
+    
     $("#list-recipe-container").on("click", ".recipe-item", recipeItemClickHandler);
+    
 });

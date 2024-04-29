@@ -76,11 +76,30 @@ button {
     cursor: pointer;
 }
 
+input {
+    border: var(--white) 1px solid;
+    border-radius: 0.5rem;
+    height: 3rem;
+    margin: 0.2rem;
+    padding: 0rem 1.5rem;
+    font-family: "Poppins", sans-serif;
+    transition: border 0.3s linear;
+}
+
+input:focus {
+    outline: none;
+    border: var(--primary) 1px solid;
+}
+
 
 /* Height styles */
 
 .h-100 {
   height: 100vh;
+}
+
+.w-100 {
+    width: 100vw;
 }
 
 /* Color styles */
@@ -124,6 +143,14 @@ button {
   justify-content: space-around;
 }
 
+.justify-start {
+    justify-content: flex-start;
+}
+
+.align-start {
+    align-items: flex-start;
+}
+
 .container {
     padding: 3rem;
 }
@@ -144,18 +171,9 @@ button {
     cursor: pointer;
 }
 
-input {
-    border: var(--white) 1px solid;
-    border-radius: 0.5rem;
-    height: 3rem;
-    margin: 0.2rem;
-    padding: 0rem 1.5rem;
-    width: 60vw;
-    font-family: "Poppins", sans-serif;
-    transition: border 0.3s linear;
-}
 
-.input:focus {
-    outline: none;
-    border: var(--primary) 1px solid;
+/* Id styles */
+
+#recipe-container {
+    display: none;
 }

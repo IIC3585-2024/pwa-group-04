@@ -35,38 +35,52 @@
             <h2>My recipes</h2>
             <button id="list-recipe">List recipes</button>
             <button id="delete-all-recipe">Delete all recipes</button>
-            <div id="list-recipe-container"></div>
-            <div id="recipe-container">
-                <h3 id="recipe-title"></h3>
-                <p id="recipe-description"></p>
-                <input
-                    type="text"
-                    name="recipe_quantity_input"
-                    id="quantity-ingredient-input"
-                    placeholder="Quantity"
-                />
-                <input
-                    type="text"
-                    name="recipe_ingredient_input"
-                    id="recipe-ingredient-input"
-                    placeholder="Enter an ingredient name"
-                />
-                <button id="ingredient-button">Agregar ingrediente</button>
-                <div id="recipe-ingredients"></div>
-                <input
-                    type="number"
-                    name="id_step_input"
-                    id="id-step-input"
-                    placeholder="Enter a step"
-                />
-                <input
-                    type="text"
-                    name="recipe_step_input"
-                    id="recipe-step-input"
-                    placeholder="Enter a step"
-                />
-                <button id="step-button">Agregar paso</button>
-                <div id="recipe-steps"></div>
+            <div class="flex-y">
+                <div class="flex-x justify-start align-start w-100">
+                    <div id="list-recipe-container"></div>
+                    <div id="recipe-container">
+                        <h3 id="recipe-title"></h3>
+                        <p id="recipe-description"></p>
+                        <div class="flex-x justify-start">
+                            <h4>Ingredients</h4>
+                            <button>+</button>
+                        </div>
+                        <div id="ingredients-container"></div>
+                        <div class="flex-x justify-start">
+                            <h4>Steps</h4>
+                            <button>+</button>
+                        </div>
+                        <div id="steps-container"></div>
+                        <input
+                            type="text"
+                            name="recipe_quantity_input"
+                            id="quantity-ingredient-input"
+                            placeholder="Quantity"
+                        />
+                        <input
+                            type="text"
+                            name="recipe_ingredient_input"
+                            id="recipe-ingredient-input"
+                            placeholder="Enter an ingredient name"
+                        />
+                        <button id="ingredient-button">Agregar ingrediente</button>
+                        <div id="recipe-ingredients"></div>
+                        <input
+                            type="number"
+                            name="id_step_input"
+                            id="id-step-input"
+                            placeholder="Enter a step"
+                        />
+                        <input
+                            type="text"
+                            name="recipe_step_input"
+                            id="recipe-step-input"
+                            placeholder="Enter a step"
+                        />
+                        <button id="step-button">Agregar paso</button>
+                        <div id="recipe-steps"></div>
+                    </div>
+                </div>
             </div>
         </div>
 
