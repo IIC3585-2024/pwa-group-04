@@ -2,9 +2,14 @@
 
 :root {
   --primary: #E16E1A;
+  --light-primary: #f1b890;
+  --transparent-primary: #e16d1a23;
   --dark-primary: #a74f10;
   --white: #F7F6F1;
+  --white-white: #ffffff;
   --black: #1E1E1E;
+  --slate: #5e5e5e;
+  --light-slate: #e9e9e9;
 }
 
 * {
@@ -59,26 +64,34 @@ h2 {
 }
 
 h3 {
-    color: var(--black);
-    font-weight: 400;
-    font-size: 1.2rem;
+    color: var(--dark-primary);
+    font-weight: 500;
+    font-size: 1.5rem;
+}
+
+h4 {
+    color: var(--slate);
+    font-weight: 500;
+    font-size: 1rem;
 }
 
 button {
     height: 3rem;
     width: fit-content;
-    border-radius: 2rem;
+    border-radius: 0.5rem;
     background-color: var(--primary);
     color: var(--white);
     border: none;
     font-size: 1rem;
     padding: 0rem 2rem;
     cursor: pointer;
+    margin: 1rem 0rem;
 }
 
 input {
     border: var(--white) 1px solid;
     border-radius: 0.5rem;
+    width: 60vw;
     height: 3rem;
     margin: 0.2rem;
     padding: 0rem 1.5rem;
@@ -91,6 +104,11 @@ input:focus {
     border: var(--primary) 1px solid;
 }
 
+hr {
+    border: 0.5px var(--primary) solid;
+    margin: 2rem 0rem;
+}
+
 
 /* Height styles */
 
@@ -100,6 +118,14 @@ input:focus {
 
 .w-100 {
     width: 100vw;
+}
+
+.pa-5 {
+    padding: 0rem 5rem;
+}
+
+.gap-2 {
+    gap: 2rem;
 }
 
 /* Color styles */
@@ -122,6 +148,9 @@ input:focus {
   color: var(--black);
 }
 
+.bg-white-white {
+    background-color: var(--white-white);
+}
 
 /* Flex styles */
 
@@ -137,6 +166,7 @@ input:focus {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 .space-around {
@@ -171,9 +201,91 @@ input:focus {
     cursor: pointer;
 }
 
+.add-button {
+    height: 2rem;
+    width: 2rem;
+    padding: 0.5rem;
+    margin: 1rem;
+    border-radius: 2rem;
+}
+
+.button-alternative {
+    background-color: var(--light-primary);
+    color: var(--white);
+    height: 2rem;
+    width: max-content;
+    margin: 1rem;
+    margin-left: 0rem;
+}
+
+
+.card {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
 
 /* Id styles */
 
 #recipe-container {
+    overflow: hidden;
     display: none;
+    white-space: nowrap; 
+}
+
+
+#list-recipe-container {
+    height: 0px;
+    overflow: hidden;
+    transition: height 1s linear;
+    min-width: fit-content;
+    overflow: scroll;
+}
+
+#list-recipe-container.open {
+    height: 20rem;
+}
+
+#list-recipe-container div {
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.5rem;
+    margin: 0.5rem 0rem;
+    transition: background-color 0.2s linear;
+    transition: background-color 0.2s linear, color 0.2s linear; /* Combine transition effects */
+}
+
+#list-recipe-container div:not(.selected):hover {
+    background-color: var(--light-slate);
+    color: var(--slate);
+}
+
+#list-recipe-container .selected {
+    background-color: var(--transparent-primary);
+    color: var(--primary);
+}
+
+#add-ingredient {
+    height: 0px;
+    overflow: hidden;
+    transition: height 0.2s ease-out;
+}
+
+#add-ingredient.open {
+    height: 10rem;
+}
+
+#add-step {
+    height: 0px;
+    overflow: hidden;
+    transition: height 0.2s ease-out;
+}
+
+#add-step.open {
+    height: 10rem;
+}
+
+@media (max-width: 720px) {
+    input {
+        width: 90vw;
+    }
 }

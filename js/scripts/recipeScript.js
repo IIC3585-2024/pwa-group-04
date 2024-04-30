@@ -33,6 +33,8 @@ async function listRecipesHandler() {
         // Append the recipe item to the container
         recipeListContainer.append(recipeItem);
     });
+
+    $("#list-recipe-container").addClass('open');
 }
 
 // Function to create a recipe
@@ -59,7 +61,7 @@ function showSteps(recipe) {
     recipe['steps'].forEach(step => {
         const stepItem = $("<div>", {
             class: "step-item"
-        }).text(step.id + step.description); // Example: Display the recipe name as text
+        }).text(step.id + ' ' + step.description); // Example: Display the recipe name as text
 
         // Append the recipe item to the container
         stepsContainer.append(stepItem);
@@ -76,7 +78,7 @@ function showIngredients(recipe) {
     recipe['ingredients'].forEach(ingredient => {
         const ingredientItem = $("<div>", {
             class: "ingredient-item"
-        }).text(ingredient.quantity + ingredient.name); // Example: Display the recipe name as text
+        }).text(ingredient.quantity + ' ' + ingredient.name); // Example: Display the recipe name as text
 
         // Append the recipe item to the container
         ingredientsElement.append(ingredientItem);
@@ -92,6 +94,9 @@ async function recipeItemClickHandler(event) {
         recipeId = parseInt($(event.target).data("recipe-id"));
         
         try {
+            $("#list-recipe-container .selected").removeClass('selected');
+
+            $(this).addClass('selected')
             const recipe = await recipeRepository.read(recipeId);
             console.log(recipe, "recipe");
             
@@ -105,6 +110,10 @@ async function recipeItemClickHandler(event) {
             // Insert the title and description into the respective elements
             recipeTitleElement.text(recipe.name);
             recipeDescriptionElement.text(recipe.description);
+
+            $("#recipe-container").addClass('open');
+            $("#add-ingredient").removeClass("open");
+            $("#add-step").removeClass("open");
 
             $("#recipe-container").show()
 
@@ -131,6 +140,7 @@ async function addIngredientHandler() {
     ingredientQuantityInput.value = "";
 
     showIngredients(recipe);
+    openAddIngredient();
 }
 
 // Steps
@@ -147,6 +157,16 @@ async function addStepHandler() {
     stepDescriptionInput.value = "";
 
     showSteps(recipe);
+    openAddStep();
+}
+
+function openAddIngredient() {
+    $("#add-ingredient").toggleClass("open");
+}
+
+
+function openAddStep() {
+    $("#add-step").toggleClass("open");
 }
 
 $(document).ready(function() {
@@ -163,6 +183,12 @@ $(document).ready(function() {
     
     // Create an add step to selected recipe
     $("#step-button").click(addStepHandler);
+
+    // Open add ingredient
+    $("#add-ingredient-button").click(openAddIngredient);
+
+    // Open add step
+    $("#add-step-button").click(openAddStep);
     
     $("#list-recipe-container").on("click", ".recipe-item", recipeItemClickHandler);
     
