@@ -1,9 +1,7 @@
-import { RecipeRepository } from "./recipe_repository.js";
+import { recipeRepository } from "../app.js";
 import { RecipeFactory } from "./recipe_factory.js";
 import { IngredientFactory } from "../ingredient/ingredient_factory.js";
 import { StepFactory } from "../steps/steps_factory.js";
-
-const recipeRepository = new RecipeRepository();
 
 // Html elements
 const recipeNameInput = document.getElementById("recipe_name");

@@ -1,0 +1,326 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  --primary: #E16E1A;
+  --light-primary: #f1b890;
+  --transparent-primary: #e16d1a23;
+  --dark-primary: #a74f10;
+  --white: #F7F6F1;
+  --white-white: #ffffff;
+  --black: #1E1E1E;
+  --slate: #5e5e5e;
+  --light-slate: #e9e9e9;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+/* Tag styles */
+body {
+  background: var(--white);
+  color: var(--black);
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  margin: 0px;
+  padding: 0px;
+}
+
+main {
+  max-width: 900px;
+  margin: auto;
+  padding: 0.5rem;
+  text-align: center;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+}
+
+li {
+  margin-right: 1rem;
+  color: var(--white);
+}
+
+h1 {
+  color: var(--white);
+  font-weight: 400;
+  font-size: 4rem;
+}
+
+h2 {
+    color: var(--black);
+    font-weight: 400;
+    font-size: 2rem;
+}
+
+h3 {
+    color: var(--dark-primary);
+    font-weight: 500;
+    font-size: 1.5rem;
+}
+
+h4 {
+    color: var(--slate);
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+button {
+    height: 3rem;
+    width: fit-content;
+    border-radius: 0.5rem;
+    background-color: var(--primary);
+    color: var(--white);
+    border: none;
+    font-size: 1rem;
+    padding: 0rem 2rem;
+    cursor: pointer;
+    margin: 1rem 0rem;
+}
+
+input {
+    border: var(--white) 1px solid;
+    border-radius: 0.5rem;
+    width: 60vw;
+    height: 3rem;
+    margin: 0.2rem;
+    padding: 0rem 1.5rem;
+    font-family: "Poppins", sans-serif;
+    transition: border 0.3s linear;
+}
+
+input:focus {
+    outline: none;
+    border: var(--primary) 1px solid;
+}
+
+hr {
+    border: 0.5px var(--primary) solid;
+    margin: 2rem 0rem;
+}
+
+
+/* Height styles */
+
+.h-100 {
+  height: 100vh;
+}
+
+.w-100 {
+    width: 100vw;
+}
+
+.w-90 {
+    width: 90vw;
+}
+
+.pa-5 {
+    padding: 0rem 5rem;
+}
+
+.gap-2 {
+    gap: 2rem;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+/* Color styles */
+
+.color-black {
+    color: var(--black);
+}
+
+.color-primary {
+    color: var(--primary);
+}
+
+.bg-primary {
+  background: var(--primary);
+  color: var(--white);
+}
+
+.bg-white {
+  background: var(--white);
+  color: var(--black);
+}
+
+.bg-white-white {
+    background-color: var(--white-white);
+}
+
+/* Flex styles */
+
+.flex-x {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-y {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.space-around {
+  justify-content: space-around;
+}
+
+.justify-start {
+    justify-content: flex-start;
+}
+
+.align-start {
+    align-items: flex-start;
+}
+
+.wrap {
+    flex-wrap: wrap;
+}
+
+.container {
+    padding: 3rem;
+}
+
+
+/* Class styles */
+
+.link {
+  text-decoration: underline;
+  font-size: 1.2rem;
+  color: var(--white);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.recipe-item {
+    cursor: pointer;
+}
+
+.add-button {
+    height: 2rem;
+    width: 2rem;
+    padding: 0.5rem;
+    margin: 1rem;
+    border-radius: 2rem;
+}
+
+.button-alternative {
+    background-color: var(--light-primary);
+    color: var(--white);
+    height: 2rem;
+    width: max-content;
+    margin: 1rem;
+    margin-left: 0rem;
+}
+
+
+.card {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+/* Id styles */
+
+#recipe-container {
+    overflow: hidden;
+    display: none;
+    white-space: nowrap; 
+}
+
+
+#list-recipe-container {
+    height: 0px;
+    overflow: hidden;
+    transition: height 1s linear;
+    min-width: fit-content;
+    overflow: scroll;
+}
+
+#list-recipe-container.open {
+    height: 20rem;
+}
+
+#list-recipe-container div {
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.5rem;
+    margin: 0.5rem 0rem;
+    transition: background-color 0.2s linear;
+    transition: background-color 0.2s linear, color 0.2s linear; /* Combine transition effects */
+}
+
+#list-recipe-container div:not(.selected):hover {
+    background-color: var(--light-slate);
+    color: var(--slate);
+}
+
+#list-recipe-container .selected {
+    background-color: var(--transparent-primary);
+    color: var(--primary);
+}
+
+#add-ingredient {
+    height: 0px;
+    overflow: hidden;
+    transition: height 0.2s ease-out;
+}
+
+#add-ingredient.open {
+    height: 10rem;
+}
+
+#add-step {
+    height: 0px;
+    overflow: hidden;
+    transition: height 0.2s ease-out;
+}
+
+#add-step.open {
+    height: 10rem;
+}
+
+@media (max-width: 720px) {
+
+    input {
+        width: 90vw;
+    }
+
+    .container {
+        padding: 1.5rem;
+    }
+
+    #list-recipe-container {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        width: 100%;
+        overflow: scroll;
+        height: fit-content;
+    }
+
+    #list-recipe-container.open {
+        height: min-content;
+    }
+
+    #list-recipe-container div {
+        min-width: fit-content;
+    }
+    
+}
