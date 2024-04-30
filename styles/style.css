@@ -120,12 +120,20 @@ hr {
     width: 100vw;
 }
 
+.w-90 {
+    width: 90vw;
+}
+
 .pa-5 {
     padding: 0rem 5rem;
 }
 
 .gap-2 {
     gap: 2rem;
+}
+
+.overflow-hidden {
+    overflow: hidden;
 }
 
 /* Color styles */
@@ -179,6 +187,10 @@ hr {
 
 .align-start {
     align-items: flex-start;
+}
+
+.wrap {
+    flex-wrap: wrap;
 }
 
 .container {
@@ -285,7 +297,30 @@ hr {
 }
 
 @media (max-width: 720px) {
+
     input {
         width: 90vw;
     }
+
+    .container {
+        padding: 1.5rem;
+    }
+
+    #list-recipe-container {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        width: 100%;
+        overflow: scroll;
+        height: fit-content;
+    }
+
+    #list-recipe-container.open {
+        height: min-content;
+    }
+
+    #list-recipe-container div {
+        min-width: fit-content;
+    }
+    
 }
