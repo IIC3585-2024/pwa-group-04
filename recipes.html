@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="styles/style.css">
     <script type="module" src="js/jquery-3.7.1.min.js"></script>
     <title>Document</title>
@@ -58,18 +59,48 @@
             </div>
 
             <div class="flex-y space-between align-start">
-                <div class="flex-x justify-start align-start gap-2 w-90 wrap overflow-hidden">
+                <div id="all-recipe-container" 
+                    class="flex-x justify-start align-start gap-2 overflow-hidden"
+                > 
                     <div id="list-recipe-container"></div>
                     <div id="recipe-container" class="bg-white-white card">
 
                         <!-- Start recipe information -->
-                        <h3 id="recipe-title"></h3>
-                        <p id="recipe-description"></p>
+                        <div class="flex-x">
+                            <div class="flex-y">
+                                <input
+                                    type="text"
+                                    name="recipe-title"
+                                    id="recipe-title"
+                                    class="h3 input"
+                                    value=""
+                                    disabled
+                                />
+                                <input
+                                    type="text"
+                                    name="recipe-description"
+                                    id="recipe-description"
+                                    class="p input"
+                                    value=""
+                                    disabled
+                                />
+                            </div>
+                            <button id="edit-recipe-button" class="circle-button icon-button">
+                                <i class="material-icons">
+                                    edit
+                                </i>
+                            </button>
+                            <button id="save-recipe-button" class="circle-button icon-button">
+                                <i class="material-icons">
+                                    save
+                                </i>
+                            </button>
+                        </div>
                         <div class="flex-x justify-start">
                             <h4>Ingredients</h4>
                             <button 
                                 id="add-ingredient-button" 
-                                class="add-button"
+                                class="circle-button"
                             >
                                 +
                             </button>
@@ -101,7 +132,7 @@
                             <h4>Steps</h4>
                             <button 
                                 id="add-step-button" 
-                                class="add-button"
+                                class="circle-button"
                             >
                                 +
                             </button>
