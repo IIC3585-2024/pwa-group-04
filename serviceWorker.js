@@ -24,11 +24,11 @@ const assets = [
   `assets/images/coffee9.jpg`
 ];
 
-const staticDevCoffee = "dev-coffee-site-v1";
+const staticCookNote = "cooknote-site-v1";
 
 self.addEventListener("install", installEvent => {
   installEvent.waitUntil(
-    caches.open(staticDevCoffee).then(cache => {
+    caches.open(staticCookNote).then(cache => {
       cache.addAll(assets).catch(error => {
         console.error("Failed to cache:", error);
       });
