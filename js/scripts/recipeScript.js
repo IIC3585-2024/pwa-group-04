@@ -60,6 +60,16 @@ async function createRecipeHandler() {
     recipeDescriptionInput.val("");
 }
 
+async function removeStepHandler(step) {
+    try {
+        await recipeRepository.removeStep(recipeId, step.id);
+        showRecipe()
+        
+    } catch (error) {
+        console.error("Error deleting step:", error);
+    }
+}
+
 function showSteps(recipe) {
     const stepsContainer = $("#steps-container");
 
@@ -81,15 +91,7 @@ function showSteps(recipe) {
 
         const deleteButton = $("<button>", {
             class: "circle-button icon-button delete-button"
-        }).click(async function() {
-            try {
-                await recipeRepository.removeStep(recipeId, step.id);
-                showRecipe()
-                
-            } catch (error) {
-                console.error("Error deleting step:", error);
-            }
-        });
+        }).click(() => removeStepHandler(step));
 
         const deleteIcon = $("<i>", {
             class: "material-icons"
@@ -105,6 +107,16 @@ function showSteps(recipe) {
     });
 
 };
+
+async function removeIngredientHandler(ingredient) {
+    try {
+        await recipeRepository.removeIngredient(recipeId, ingredient.id);
+        showRecipe()
+
+    } catch (error) {
+        console.error("Error deleting ingredient:", error);
+    }
+}
 
 function showIngredients(recipe) {
     const ingredientsElement = $("#ingredients-container");
@@ -131,15 +143,7 @@ function showIngredients(recipe) {
 
         const deleteButton = $("<button>", {
             class: "circle-button icon-button delete-button"
-        }).click(async function() {
-            try {
-                await recipeRepository.removeIngredient(recipeId, ingredient.id);
-                showRecipe()
-
-            } catch (error) {
-                console.error("Error deleting ingredient:", error);
-            }
-        });
+        }).click(() => removeIngredientHandler(ingredient));
 
         endDiv.append(quantityParagraph, deleteButton)
 
