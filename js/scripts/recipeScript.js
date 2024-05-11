@@ -83,12 +83,11 @@ function showSteps(recipe) {
             class: "circle-button icon-button delete-button"
         }).click(async function() {
             try {
-                // Call the recipeRepository.addIngredient() method to delete the ingredient
                 await recipeRepository.removeStep(recipeId, step.id);
                 showRecipe()
                 
             } catch (error) {
-                console.error("Error deleting ingredient:", error);
+                console.error("Error deleting step:", error);
             }
         });
 
@@ -98,12 +97,10 @@ function showSteps(recipe) {
 
         deleteButton.append(deleteIcon)
     
-        // Create a text node and append it to the paragraph element
         descriptionParagraph[0].appendChild(document.createTextNode(step.description));
 
         stepItem.append(idParagraph, descriptionParagraph, deleteButton);
 
-        // Append the recipe item to the container
         stepsContainer.append(stepItem);
     });
 
@@ -136,7 +133,6 @@ function showIngredients(recipe) {
             class: "circle-button icon-button delete-button"
         }).click(async function() {
             try {
-                // Call the recipeRepository.addIngredient() method to delete the ingredient
                 await recipeRepository.removeIngredient(recipeId, ingredient.id);
                 showRecipe()
 
@@ -162,11 +158,7 @@ function showIngredients(recipe) {
 
 async function showRecipe() {
     try {
-        $("#list-recipe-container .selected").removeClass('selected');
-
-        $(this).addClass('selected')
         const recipe = await recipeRepository.read(recipeId);
-        console.log(recipe, "recipe");
         
         // Select the recipe title and description elements
         const recipeTitleElement = $("#recipe-title");
@@ -198,6 +190,10 @@ async function recipeItemClickHandler(event) {
         // Retrieve the recipe ID from the data attribute
         recipeId = parseInt($(event.target).data("recipe-id"));
         
+        $("#list-recipe-container .selected").removeClass('selected');
+
+        $(this).addClass('selected')
+
         showRecipe()
     }
 }
@@ -214,12 +210,12 @@ async function addIngredientHandler() {
     const quantity = ingredientQuantityInput.val();
     let ingredient = IngredientFactory.create(name, quantity);
     const recipe = await recipeRepository.addIngredient(recipeId, ingredient);
-    console.log(recipe)
     ingredientNameInput.val("")
     ingredientQuantityInput.val("");
 
     showIngredients(recipe);
     openAddIngredient();
+    $(".delete-button").hide();
 }
 
 // Steps
@@ -231,12 +227,12 @@ async function addStepHandler() {
     const stepId = parseInt(stepIdInput.val());
     let step = StepFactory.create(stepId, description);
     const recipe = await recipeRepository.addStep(recipeId, step);
-    console.log(recipe)
     stepIdInput.val("");
     stepDescriptionInput.val("");
 
     showSteps(recipe);
     openAddStep();
+    $(".delete-button").hide();
 }
 
 function openAddIngredient() {
