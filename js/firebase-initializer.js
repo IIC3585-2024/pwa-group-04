@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
 import { getMessaging, getToken, onMessage } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-messaging.js";
 
-function initializeFirebase() {
+function initializeFirebase(registration) {
 
   const firebaseConfig = {
       apiKey: "AIzaSyAX2FRz3eHgNv2DAUdVfio82CCZalxVYCk",
@@ -20,19 +20,21 @@ function initializeFirebase() {
   function requestPermissionAndGetToken() {
       Notification.requestPermission().then(permission => {
           if (permission === 'granted') {
-              new Notification('Welcome to Cooknote', { body: '👨‍🍳 Stay tuned for daily cooking tips and exclusive recipe drops!' });
+            new Notification('Welcome to Cooknote', { body: '👨‍🍳 Stay tuned for daily cooking tips and exclusive recipe drops!' });
 
+            getToken(messaging, {
+                serviceWorkerRegistration: registration,
+                vapidKey: 'BOxokoPZE2q0b0xaJMuKep0lbq_fZwL1IY0-OGZjE81SYrMp71nPQm6JlevfOHR-o_w7Uip_nC-PA3PVGJDJjyo' }).then((token) => {
+                if (token) {
+                    //Log this help you to copy the token and test it in the Firebase Console
+                    console.log('Token:', token);
+                } else {
+                    console.log('No registration token available. Request permission to generate one.');
+                }
+            }).catch((err) => {
+                console.log('An error occurred while retrieving token. ', err);
+            });
               // this token helps firebase send messages to this specific user
-              getToken(messaging, { vapidKey: 'BOxokoPZE2q0b0xaJMuKep0lbq_fZwL1IY0-OGZjE81SYrMp71nPQm6JlevfOHR-o_w7Uip_nC-PA3PVGJDJjyo' }).then((token) => {
-                  if (token) {
-                      //Log this help you to copy the token and test it in the Firebase Console
-                      console.log('Token:', token);
-                  } else {
-                      console.log('No registration token available. Request permission to generate one.');
-                  }
-              }).catch((err) => {
-                  console.log('An error occurred while retrieving token. ', err);
-              });
 
           } else {
               // In case accidentially the user denied the permission

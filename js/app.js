@@ -12,19 +12,9 @@ if ("serviceWorker" in navigator) {
   window.addEventListener("load", function() {
     navigator.serviceWorker.register(`serviceWorker.js`)
       .then(res => {
-        console.log("Service worker registrado");
+        console.log("Service worker registrado", res);
+        initializeFirebase(res);
       })
       .catch(err => console.log("Service worker not registered", err));
-  });
-}
-
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('firebase-messaging-sw.js')
-  .then(function() {
-      console.log("Service worker para notificaciones registrado");
-      initializeFirebase();
-  })
-  .catch(function(err) {
-      console.log('Registro de Service Worker para aplicaciones fallido:', err);
   });
 }
