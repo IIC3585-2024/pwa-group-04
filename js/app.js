@@ -18,4 +18,14 @@ if ("serviceWorker" in navigator) {
   });
 }
 
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('firebase-messaging-sw.js')
+  .then(function() {
+      console.log("Service worker para notificaciones registrado");
+  })
+  .catch(function(err) {
+      console.log('Registro de Service Worker para aplicaciones fallido:', err);
+  });
+}
+
 initializeFirebase();
