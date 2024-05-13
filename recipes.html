@@ -2,9 +2,22 @@
 <html lang="en">
   <head>
     <title>My recipes</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="manifest" href="manifest.json">
+    <!-- ios support -->
+    <link rel="apple-touch-icon" href="assets/images/icons/icon-72x72.png">
+    <link rel="apple-touch-icon" href="assets/images/icons/icon-96x96.png">
+    <link rel="apple-touch-icon" href="assets/images/icons/icon-128x128.png">
+    <link rel="apple-touch-icon" href="assets/images/icons/icon-144x144.png">
+    <link rel="apple-touch-icon" href="assets/images/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" href="assets/images/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" href="assets/images/icons/icon-384x384.png">
+    <link rel="apple-touch-icon" href="assets/images/icons/icon-512x512.png">
+    <meta name="apple-mobile-web-app-status-bar" content="#db4938">
+    <meta name="theme-color" content="#db4938">
     <script type="module" src="js/jquery-3.7.1.min.js"></script>
   </head>
   <body>
@@ -15,11 +28,11 @@
             <h1 class="color-primary">Cooknote</h1>
             <h3>Create a new recipe</h3>
             <div>
-                <input 
+                <input
                     class="input-width"
-                    type="text" 
-                    id="recipe_name" 
-                    placeholder="Recipe name" 
+                    type="text"
+                    id="recipe_name"
+                    placeholder="Recipe name"
                 />
             </div>
             <div>
@@ -43,13 +56,13 @@
 
             <!-- Recipes actions -->
             <div class="flex-x justify-start align-start">
-                <button 
+                <button
                     id="list-recipe"
                     class="button-alternative"
                 >
                     See recipes
                 </button>
-                <button 
+                <button
                     id="delete-all-recipe"
                     class="button-alternative"
                 >
@@ -58,9 +71,9 @@
             </div>
 
             <div class="flex-y space-between align-start">
-                <div id="all-recipe-container" 
+                <div id="all-recipe-container"
                     class="flex-x justify-start align-start gap-2 overflow-hidden"
-                > 
+                >
                     <div id="list-recipe-container"></div>
                     <div id="recipe-container" class="bg-white-white card">
 
@@ -97,8 +110,8 @@
                         </div>
                         <div class="flex-x justify-start">
                             <h4>Ingredients</h4>
-                            <button 
-                                id="add-ingredient-button" 
+                            <button
+                                id="add-ingredient-button"
                                 class="circle-button"
                             >
                                 +
@@ -126,11 +139,11 @@
 
                         <hr/>
 
-                        
+
                         <div class="flex-x justify-start">
                             <h4>Steps</h4>
-                            <button 
-                                id="add-step-button" 
+                            <button
+                                id="add-step-button"
                                 class="circle-button"
                             >
                                 +
